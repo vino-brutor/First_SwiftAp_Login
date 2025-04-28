@@ -46,27 +46,24 @@ class CreateAccountViewController:UIViewController {
         
         if(optionPolicy.isOn){
             guard let fullname = textFieldFullname.text, !fullname.isEmpty else {
-//                let fullNameAlert = UIAlertController(title: "Error", message: "Please enter your full name", preferredStyle: .alert)
-//                
-//                fullNameAlert.addAction(UIAlertAction(title: "OK", style: .default))
-//                
-//                present(fullNameAlert, animated: true , completion: nil)
-                print("erro")
+                
+                showErrorAlert(alertMessage: "Please enter your full name")
                 return
             }
             
             guard let email = textFieldEmail.text, !email.isEmpty else {
-                print("Please enter your email")
+                
+                showErrorAlert(alertMessage: "Please enter your email")
                 return
             }
             
             guard let password = textFieldPassword.text, !password.isEmpty else {
-                print("Please enter your password")
+                showErrorAlert(alertMessage: "Please enter your password")
                 return
             }
             
             guard let dateOfBirth = datePickerBirth.date as Date? else {
-                print("Enter your birth date to continue")
+                showErrorAlert(alertMessage: "Please enter your Birth day")
                 return
             }
             
@@ -82,8 +79,15 @@ class CreateAccountViewController:UIViewController {
             }
             
         } else {
-            print("Please mark the policy option")
+            showErrorAlert(alertMessage: "Please accept the policy therms")
         }
     }
-    
+
+    func showErrorAlert(alertMessage: String){
+        let errorAlert = UIAlertController(title: "Error", message: alertMessage, preferredStyle: .alert)
+        
+        errorAlert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        present(errorAlert, animated: true , completion: nil)
+    }
 }
