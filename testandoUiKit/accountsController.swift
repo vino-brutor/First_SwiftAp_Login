@@ -13,6 +13,7 @@ struct Account:Codable {
     let fullname: String
     let email: String
     let password: String
+    let dateOfBirth: Date
 }
 
 struct AccountsList:Codable {
@@ -27,10 +28,10 @@ func getAccounts() -> AccountsList? {
     return nil
 }
 
-func addAccountCreated(fullName: String, email: String, password: String) {
+func addAccountCreated(fullName: String, email: String, password: String, dateOfBirth: Date) {
     var currentAccountsList: AccountsList = getAccounts() ?? AccountsList(Accounts: [])
     
-    let newAccount = Account(fullname: fullName, email: email, password: password)
+    let newAccount = Account(fullname: fullName, email: email, password: password, dateOfBirth: dateOfBirth)
     
     currentAccountsList.Accounts.append(newAccount)
     print(currentAccountsList)

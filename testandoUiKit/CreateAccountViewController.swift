@@ -22,6 +22,8 @@ class CreateAccountViewController:UIViewController {
     @IBOutlet weak var labelPassword: UILabel!
     @IBOutlet weak var labelEmail: UILabel!
     
+    @IBOutlet weak var datePickerBirth: UIDatePicker!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setSubViewCrateAccount()
@@ -37,16 +39,19 @@ class CreateAccountViewController:UIViewController {
         labelEmail.font = (UIFont(name: "SFProText-Semibold", size: 17))
         labelPassword.font = (UIFont(name: "SFProText-Semibold", size: 17))
         labelDate.font = (UIFont(name: "SFProText-Semibold", size: 17))
-        
     }
     
     
     @IBAction func buttonCreateAccountTapped(_ sender: UIButton) {
-        print("Button tapped")
         
         if(optionPolicy.isOn){
             guard let fullname = textFieldFullname.text, !fullname.isEmpty else {
-                print("Please enter your full name")
+//                let fullNameAlert = UIAlertController(title: "Error", message: "Please enter your full name", preferredStyle: .alert)
+//                
+//                fullNameAlert.addAction(UIAlertAction(title: "OK", style: .default))
+//                
+//                present(fullNameAlert, animated: true , completion: nil)
+                print("erro")
                 return
             }
             
@@ -60,15 +65,20 @@ class CreateAccountViewController:UIViewController {
                 return
             }
             
-            addAccountCreated(fullName: fullname, email: email, password: password)
+            guard let dateOfBirth = datePickerBirth.date as Date? else {
+                print("Enter your birth date to continue")
+                return
+            }
+            
+            addAccountCreated(fullName: fullname, email: email, password: password, dateOfBirth: dateOfBirth)
             
         
             if let accountsList = getAccounts() {
                 for account in accountsList.Accounts {
-                    print("Fullname: \(account.fullname), Email: \(account.email), Password: \(account.password)")
+                    print("Fullname: \(account.fullname), Email: \(account.email), Date of Birth: \(account.dateOfBirth),  Password: \(account.password)\n")
                 }
             } else {
-                print("Nenhuma conta encontrada")
+                print("No accounts Found")
             }
             
         } else {
