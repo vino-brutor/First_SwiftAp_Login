@@ -13,9 +13,7 @@ class ViewController: UIViewController {
 
     //declarao dos elementos
     @IBOutlet weak var labelWelcome: UILabel!
-
-    @IBOutlet weak var stackViewIconWelcome: UIStackView!
-
+    
     @IBOutlet weak var appleInteligenceIcon: UIImageView!
     
     @IBOutlet weak var labelLogin: UILabel!
@@ -36,6 +34,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var stackViewLogin: UIStackView!
     
+    @IBOutlet weak var viewWelcome: UIView!
     
     
     //funcao didloadView
@@ -55,7 +54,7 @@ class ViewController: UIViewController {
         
         buttonFormatation()
         
-        stackViewIconWelcome.gradientColor(
+        viewWelcome.gradientColor(
             colorOne: UIColor(
                 red: 0/255, green: 66/255, blue: 132/255, alpha: 1.0
             ),
@@ -65,7 +64,6 @@ class ViewController: UIViewController {
         )
         
         viewLogin.backgroundColor = UIColor(red: 28.0/255.0, green: 28.0/255.0, blue: 30.0/255.0, alpha: 1.0)
-        
     }
     
     func labelFormatation(){
